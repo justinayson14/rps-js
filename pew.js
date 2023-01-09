@@ -8,7 +8,7 @@ function getComputerChoice() {
             computerChoice = "rock";
             break;
         case 1:
-            computerChoice = "scissor";
+            computerChoice = "scissors";
             break;
         case 2:
             computerChoice = "paper";
@@ -21,14 +21,22 @@ function getComputerChoice() {
 //User choice vs. Computer choice
 function playRound(userPick, computerPick) {
     //if (conditions when user wins)
-    //else if (conditions pc wins)
-    //else (conditions tie)
+    if ((userPick === "rock" && computerPick === "scissors")||(userPick === "scissors" && computerPick === "paper")||(userPick === "paper" && computerPick === "rock")) {
+        console.log("I win!");
+    }
+    else if ((computerPick === "rock" && userPick === "scissors")||(computerPick === "scissors" && userPick === "paper")||(computerPick === "paper" && userPick === "rock")) {
+        console.log("I lost!");
+    }
+    else {
+        console.log("Tie!");
+    }
     //return round winner
 }
 
-const userPick = "rock";
+let userPick = "rock";
 userPick = userPick.toLowerCase();
 const computerPick = getComputerChoice();
+console.log(computerPick);
 playRound(userPick, computerPick);
 //Loop for 5 rounds
 //State winner
