@@ -28,23 +28,55 @@ function getUserChoice() {
 
 //User choice vs. Computer choice
 function playRound(userPick, computerPick) {
-    //if (conditions when user wins)
-    if ((userPick === "rock" && computerPick === "scissors")||(userPick === "scissors" && computerPick === "paper")||(userPick === "paper" && computerPick === "rock")) {
-        console.log("I win!");
+    let roundResult = "";
+
+    if (userPick === "rock" && computerPick === "scissors") {
+        roundResult = "You win! Rock beats scissors!";
     }
-    else if ((computerPick === "rock" && userPick === "scissors")||(computerPick === "scissors" && userPick === "paper")||(computerPick === "paper" && userPick === "rock")) {
-        console.log("I lost!");
+    else if (userPick === "scissors" && computerPick === "paper") {
+        roundResult = "You win! Scissors beats paper!";
+    }
+    else if (userPick === "paper" && computerPick === "rock") {
+        roundResult = "You win! Paper beats rock!";
+    }
+    else if (computerPick === "rock" && userPick === "scissors") {
+        roundResult = "You lose! Rock beats scissors!";
+    }
+    else if (computerPick === "paper" && userPick === "rock") {
+        roundResult = "You lose! Paper beats rock!";
+    }
+    else if (computerPick === "scissors" && userPick === "paper") {
+        roundResult = "You lose! Scissors beats paper!";
+    }
+    else if (computerPick === userPick) {
+        roundResult = "A tie! You and the computer had the same choices!";
     }
     else {
-        console.log("Tie!");
+        roundResult = "Error"
     }
-    //return round winner
+    
+    return roundResult;
 }
 
-let userPick = "rock";
-userPick = userPick.toLowerCase();
-const computerPick = getComputerChoice();
-console.log(computerPick);
-playRound(userPick, computerPick);
-//Loop for 5 rounds
-//State winner
+//5 rounds and states winner of game
+function game() {
+    let userPoints = 0;
+    let pcPoints = 0;
+    for (let i = 0; i < 5; i++) {
+        const pickUser = getUserChoice();
+        const pickComputer = getComputerChoice();
+        console.log(`${pickUser} vs. ${pickComputer}`);
+
+        let resultRound = playRound(pickUser, pickComputer);
+        console.log(resultRound);
+
+        resultRound = resultRound.substring(resultRound.indexOf(' ') + 1, resultRound.indexOf('!'));
+
+        (resultRound === "win") ? userPoints++ : (resultRound === "lose") ? pcPoints++ : 0;
+        console.log(`${userPoints} vs. ${pcPoints}`);
+    }
+
+    (userPoints > pcPoints) ? console.log("You won the game!") : (userPoints < pcPoints) ? console.log("You lost the game!") : console.log("Rematch!");
+}
+
+game();
