@@ -18,6 +18,14 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+//Get User choice
+function getUserChoice() {
+    let userChoice = prompt("Rock, paper, or scissors?", ' ');
+    userChoice = userChoice.toLowerCase().trim();
+
+    return userChoice;
+}
+
 //User choice vs. Computer choice
 function playRound(userPick, computerPick) {
     //if (conditions when user wins)
