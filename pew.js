@@ -18,13 +18,6 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-//Get User choice
-// function getUserChoice() {
-//     userChoice = userChoice.toLowerCase().trim();
-//     return userChoice;
-// }
-
-//User choice vs. Computer choice
 function playRound(userPick) {
     let roundResult = "";
     let computerPick = getComputerChoice();
@@ -54,9 +47,15 @@ function playRound(userPick) {
         roundResult = "Error"
     }
     
-    return alert(roundResult);
+    return roundResult;
 }
 
+function declareWinner(userPoints, pcPoints) {
+    if (userPoints === 5) 
+        return 'Congrats user! You won the game!';
+    else (pcPoints === 5)
+        return 'Pc has won! Try again user.';
+}
 //5 rounds and states winner of game
 // function game() {
 //     let userPoints = 0;
@@ -80,17 +79,59 @@ function playRound(userPick) {
 
 // game();
 
-
-const rock = document.getElementById('rock');
+const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
+const results = document.querySelector('#container');
+let roundResult;
+let userPoints = 0;
+let pcPoints = 0;
 
+//buttons
 rock.addEventListener('click', e => {
-    playRound('rock');
+    roundResult = playRound('rock');
+    roundResult = roundResult.substring(roundResult.indexOf(' ') + 1, roundResult.indexOf('!'));
+    if (roundResult === 'win')
+        ++userPoints;
+    else if (roundResult === 'lose')
+        ++pcPoints;
+    console.log(roundResult);
+    results.textContent = `${userPoints} vs. ${pcPoints}`;
+    if (userPoints === 5 || pcPoints === 5) {
+        results.textContent = declareWinner(userPoints, pcPoints);
+        userPoints = 0;
+        pcPoints = 0;
+    }
 });
 paper.addEventListener('click', e => {
-    playRound('paper');
+    roundResult = playRound('paper');
+    roundResult = roundResult.substring(roundResult.indexOf(' ') + 1, roundResult.indexOf('!'));
+    if (roundResult === 'win')
+        ++userPoints;
+    else if (roundResult === 'lose')
+        ++pcPoints;
+    console.log(roundResult);
+    results.textContent(`${userPoints} vs. ${pcPoints}`);
+    if (userPoints === 5 || pcPoints === 5) {
+        results.textContent = declareWinner(userPoints, pcPoints);
+        userPoints = 0;
+        pcPoints = 0;
+    }
 });
 scissors.addEventListener('click', e => {
-    playRound('scissors');
+    roundResult = playRound('scissors');
+    roundResult = roundResult.substring(roundResult.indexOf(' ') + 1, roundResult.indexOf('!'));
+    if (roundResult === 'win')
+        ++userPoints;
+    else if (roundResult === 'lose')
+        ++pcPoints;
+    console.log(roundResult);
+    results.textContent(`${userPoints} vs. ${pcPoints}`);
+    if (userPoints === 5 || pcPoints === 5) {
+        results.textContent = declareWinner(userPoints, pcPoints);
+        userPoints = 0;
+        pcPoints = 0;
+    }
 });
+
+//results
