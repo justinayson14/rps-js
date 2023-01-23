@@ -54,7 +54,7 @@ function declareWinner(userPoints, pcPoints) {
     if (userPoints === 5) 
         return 'Congrats user! You won the game!';
     else (pcPoints === 5)
-        return 'Pc has won! Try again user.';
+        return 'PC has won! Try again user.';
 }
 //5 rounds and states winner of game
 // function game() {
@@ -82,7 +82,7 @@ function declareWinner(userPoints, pcPoints) {
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
-const results = document.querySelector('#container');
+const results = document.querySelector('#text');
 let roundResult;
 let userPoints = 0;
 let pcPoints = 0;
@@ -111,7 +111,7 @@ paper.addEventListener('click', e => {
     else if (roundResult === 'lose')
         ++pcPoints;
     console.log(roundResult);
-    results.textContent(`${userPoints} vs. ${pcPoints}`);
+    results.textContent = `${userPoints} vs. ${pcPoints}`;
     if (userPoints === 5 || pcPoints === 5) {
         results.textContent = declareWinner(userPoints, pcPoints);
         userPoints = 0;
@@ -126,12 +126,10 @@ scissors.addEventListener('click', e => {
     else if (roundResult === 'lose')
         ++pcPoints;
     console.log(roundResult);
-    results.textContent(`${userPoints} vs. ${pcPoints}`);
+    results.textContent = `${userPoints} vs. ${pcPoints}`;
     if (userPoints === 5 || pcPoints === 5) {
         results.textContent = declareWinner(userPoints, pcPoints);
         userPoints = 0;
         pcPoints = 0;
     }
 });
-
-//results
