@@ -16,3 +16,10 @@ Project from Odin's Project
 - problem solving
 - js callstacks
 - js errors (syntaxerror, logicerror, typeerror, referenceerror)
+
+1/22/23
+- DOM
+- document.querySelector
+- event listeners
+- add text content via DOM
+- callback (e)
